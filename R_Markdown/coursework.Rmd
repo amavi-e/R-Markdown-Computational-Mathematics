@@ -1,0 +1,385 @@
+---
+title: "coursework"
+author: "Ehansa Gajanayake"
+date: "2024-07-16"
+output:
+  word_document: default
+  html_document: default
+  pdf_document: default
+---
+
+```{r}
+library(tidyverse)
+library(MASS)
+```
+
+Q1
+```{r}
+First_box <- c(1, 3, 5)
+Second_box <- c(2, 6, 8)
+
+#a
+Possible_Valuesof_X <- c(
+  First_box[1] + Second_box[1], First_box[1] + Second_box[2], First_box[1] + Second_box[3],
+  First_box[2] + Second_box[1], First_box[2] + Second_box[2], First_box[2] + Second_box[3],
+  First_box[3] + Second_box[1], First_box[3] + Second_box[2], First_box[3] + Second_box[3]
+)
+
+Possible_Valuesof_X
+```
+
+```{r}
+#b
+Frequencies <- table(Possible_Valuesof_X)
+
+Frequencies
+
+#Calculating PMFs for each value
+Pmf_X_3 <- Frequencies["3"] / sum(Frequencies)
+Pmf_X_5 <- Frequencies["5"] / sum(Frequencies)
+Pmf_X_7 <- Frequencies["7"] / sum(Frequencies)
+Pmf_X_9 <- Frequencies["9"] / sum(Frequencies)
+Pmf_X_11 <- Frequencies["11"] / sum(Frequencies)
+Pmf_X_13 <- Frequencies["13"] / sum(Frequencies)
+
+Pmf_X_3
+Pmf_X_5 
+Pmf_X_7
+Pmf_X_9
+Pmf_X_11
+Pmf_X_13
+```
+
+```{r}
+#c
+Expected_Value_of_X <- (
+  (as.numeric(names(Frequencies)[1]) * Pmf_X_3) + 
+  (as.numeric(names(Frequencies)[2]) * Pmf_X_5) + 
+  (as.numeric(names(Frequencies)[3]) * Pmf_X_7) +
+  (as.numeric(names(Frequencies)[4]) * Pmf_X_9) + 
+  (as.numeric(names(Frequencies)[5]) * Pmf_X_11) + 
+  (as.numeric(names(Frequencies)[6]) * Pmf_X_13)
+)
+
+Expected_Value_of_X
+```
+
+```{r}
+#Var(X) = E(X^2) - [E(X)]^2
+
+Expected_Value_of_X2 <- (
+  (as.numeric(names(Frequencies)[1])^2 * Pmf_X_3) + 
+  (as.numeric(names(Frequencies)[2])^2 * Pmf_X_5) + 
+  (as.numeric(names(Frequencies)[3])^2 * Pmf_X_7) +
+  (as.numeric(names(Frequencies)[4])^2 * Pmf_X_9) + 
+  (as.numeric(names(Frequencies)[5])^2 * Pmf_X_11) + 
+  (as.numeric(names(Frequencies)[6])^2 * Pmf_X_13)
+)
+
+Expected_Value_of_X2
+
+Variance_of_X <- (Expected_Value_of_X2 - ((Expected_Value_of_X)^2))
+
+Variance_of_X
+```
+
+```{r}
+#d
+#Y=3X-4
+
+Poss_Values_Y = (3*Possible_Valuesof_X)-4
+Poss_Values_Y
+
+Frequencies_2 = table(Poss_Values_Y)
+Frequencies_2
+
+
+Pmf_X_5 <- Frequencies_2["5"] / sum(Frequencies_2)
+Pmf_X_11 <- Frequencies_2["11"] / sum(Frequencies_2)
+Pmf_X_17 <- Frequencies_2["17"] / sum(Frequencies_2)
+Pmf_X_23 <- Frequencies_2["23"] / sum(Frequencies_2)
+Pmf_X_29 <- Frequencies_2["29"] / sum(Frequencies_2)
+Pmf_X_35 <- Frequencies_2["35"] / sum(Frequencies_2)
+
+Pmf_X_5
+Pmf_X_11
+Pmf_X_17
+Pmf_X_23
+Pmf_X_29
+Pmf_X_35
+
+```
+```{r}
+#e
+cdf_of_Y1 = Pmf_X_5
+cdf_of_Y1
+cdf_of_Y2 = cdf_of_Y1+Pmf_X_11
+cdf_of_Y2
+cdf_of_Y3 = cdf_of_Y2+Pmf_X_17
+cdf_of_Y3
+cdf_of_Y4 = cdf_of_Y3 + Pmf_X_23
+cdf_of_Y4
+cdf_of_Y5 = cdf_of_Y4+Pmf_X_29
+cdf_of_Y5
+cdf_of_Y = cdf_of_Y5+Pmf_X_35
+cdf_of_Y
+```
+```{r}
+#f
+#P(Y=23)
+PY23 <- cdf_of_Y4 - cdf_of_Y3
+PY23
+```
+
+
+
+Q2
+```{r}
+number_of_values <- 500
+mean <- 25
+standard_deviation <- 8
+random_generation <- rnorm(number_of_values, mean, standard_deviation)
+```
+
+```{r}
+#a
+hist(random_generation, breaks=10, main="Histogram of Normal Distribution", freq=F)
+
+#b
+lines(density(random_generation), lwd=3, col="red")
+
+#c
+cat("We can see that the histogram and the density curve follow a normal distribution as the density curve is of a bell shape and the peak of the density curve is at the mean 25.")
+```
+
+
+Q3
+```{r}
+#a
+X<- c(3.00, 3.40, 4.00, 4.60,5.00, 5.48, 6.00, 6.53, 7.00)
+Y <- c(8.0000, 6.5600, 5.0000, 4.1600, 4.0000, 4.2304, 5.0000, 6.3409, 8.0000)
+
+df <- data.frame(
+ X,Y
+)
+
+
+plot(df, main="Data Frame plot", xlab="X", ylab="Y")
+```
+
+```{r}
+#b
+correlation_all_data <- cor(X,Y)
+correlation_all_data
+
+#c 
+cat("It is a very weak negative correlation, as the value is close to zero. This suggests that there is almost no linear relationship between X and Y.")
+```
+
+
+```{r}
+#d
+last_six_X <- X[4:9]
+last_six_Y <- Y[4:9]
+
+correlation_last_six <- cor(last_six_X, last_six_Y)
+correlation_last_six
+
+cat("This is a very strong positive correlation. This is because the the relationship between the last six pairs are more linear than the first few data. The first few data points shows a lot more variations.")
+```
+
+
+```{r}
+#e
+X1 <- (3-(2*X))
+X2 <- (2*(X^3))
+
+correlation_X1_Y <- cor(X1, Y)
+correlation_X2_Y <- cor(X2, Y)
+
+correlation_X1_Y
+correlation_X2_Y
+
+cat("X1=3-2X is a linear transformation. rxy = -0.02763248 and rx1y = 0.02763248. Linear transformations do not change the nature of the correlation, but since X is multiplied by negative 2, the sign of the correlation coefficient is changed. \n")
+cat("X2 = 2X^3 is a non linear transformation. rxy = -0.02763248 and rx2y = 0.1896496. The non linear transformation has changed the relationship between the variables. The new correlation shows a weak positive linear relationship between X2 and Y as opposed to the negative almost zero correlation between X and Y.")
+```
+
+Q4
+```{r}
+cars %>%
+  view()
+```
+
+```{r}
+#a
+cars %>% 
+  head(10)
+```
+
+```{r}
+#b
+print(summary(cars))
+```
+
+```{r}
+#c
+plot(cars, xlab = "Speed (X)", ylab = "Stopping Distances of Cars (Y)",
+     main="Relationship between Speed and Stopping Distance of Cars",
+     col='red')
+
+cat("It is a positive association where as the speed increases, the stopping distance of the cars also increase.")
+```
+
+
+```{r}
+#d
+LRmodel <- lm(formula = dist ~ speed, data = cars) #linear model
+LRmodel
+summary(LRmodel)
+
+plot(cars, xlab = "Speed (X)", ylab = "Stopping Distances of Cars (Y)",las = 1,
+     main="Relationship between Speed and Stopping Distances of Cars",
+     col='red')
+abline (LRmodel,col ="blue")
+```
+
+#e
+$$
+\begin{aligned}
+\text{Stopping Distance}=-17.5791+ 3.9324 * \text{Speed}\\
+\end{aligned}
+$$
+```{r}
+#f
+cat("3.9324")
+```
+
+
+```{r}
+#g
+plot(fitted(LRmodel),resid(LRmodel),
+     xlab = "Fitted", ylab ="Residuals",las = 1, 
+     main="Residuals versus Speed",
+     col='red') 
+abline(0,0)
+
+cat("In  this  residual(errors)  plot,  the  points do not seem to be randomly scattered around the residual=0  line.   So  we  can  conclude  that 
+a  linear  model  is  not appropriate  for  modeling  this  data. There are a few points with larger residuals, both positive and negative indicating possible outliers.")
+```
+
+
+```{r}
+#h
+new_speed <- data.frame(speed = 21)
+predicted_dist <- predict(LRmodel, newdata = new_speed)
+predicted_dist
+
+equation_predicted_dist <- -17.5791+ 3.9324 *21
+equation_predicted_dist
+
+```
+
+#Q5
+
+#Part A
+```{r}
+mean_5 <- 4.11
+standard_deviation_5 = 1.37
+```
+
+```{r}
+#a
+answer_0.85 <- qnorm(0.85, mean_5, standard_deviation_5)
+answer_0.85
+```
+```{r}
+#b
+answer_0.35 = qnorm(0.35, mean_5, standard_deviation_5)
+answer_0.35
+```
+```{r}
+#c
+median <- mean_5
+median
+```
+```{r}
+#d
+morethan_5dollar_percentage <- pnorm(5, mean_5, standard_deviation_5, lower.tail = F)*100
+morethan_5dollar_percentage
+```
+
+Part B
+```{r}
+#a
+cat("The most suitable distribution for X is binomial. This is because there is a fixed number of trials, 10 where a person can be either infected or not infected.The probability a person being infected in each trial is 0.1. \n")
+cat("n = 10 \n")
+cat("p = 0.1 \n")
+cat("X~Binomial(n,p) \n")
+cat("X~Binomial(10,0.1)")
+
+```
+
+
+```{r}
+n_times <- 10
+probability <- 0.1
+```
+
+```{r}
+#b
+less_than_3 = pbinom(2,n_times,probability)
+less_than_3
+```
+
+```{r}
+#c
+#E(X)=np
+#Var(X)=np(1-p)
+
+Mean_of_X = n_times*probability
+Variance_of_X2 = n_times*probability*(1-probability)
+
+Mean_of_X
+Variance_of_X2
+```
+
+```{r}
+
+#d
+cat("n = 100 \n")
+cat("p = 0.024 \n")
+cat("Since the number of trials n is very large and the probability of being infected in a single trial is very small, Poisson distribution can be used to approximate the binomial distribution. Set the Poisson mean to equal the binomial mean where, \n")
+cat("λ = np = 100*0.024 = 2.4 \n")
+cat("So X ~ Pois(2.4)")
+```
+
+
+
+#Q6
+```{r}
+N <- 50000 #number of bootstrap samples
+my_boootstrap <- numeric(N) #vector where to store sample mean
+data <- c(1, 2, 3, 3, 5, 8, 7, 6, 5, 9, 11, 15) #given data set
+
+mean(data) #checking the mean of the given data
+
+for (i in 1:N) {
+  s=sample(data,12,replace = T)
+  my_boootstrap[i]=mean(s)
+}
+
+
+```
+```{r}
+#a
+hist(my_boootstrap)
+```
+```{r}
+#b
+quantile (my_boootstrap, c(0.025, 0.975))
+```
+```{r}
+#c
+qqnorm(my_boootstrap)
+qqline(my_boootstrap)
+```

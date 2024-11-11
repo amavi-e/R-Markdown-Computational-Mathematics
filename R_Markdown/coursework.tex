@@ -1,0 +1,908 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={coursework},
+  pdfauthor={Ehansa Gajanayake},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{coursework}
+\author{Ehansa Gajanayake}
+\date{2024-07-16}
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+## v dplyr     1.1.4     v readr     2.1.5
+## v forcats   1.0.0     v stringr   1.5.1
+## v ggplot2   3.5.1     v tibble    3.2.1
+## v lubridate 1.9.3     v tidyr     1.3.1
+## v purrr     1.0.2     
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(MASS)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'MASS'
+## 
+## The following object is masked from 'package:dplyr':
+## 
+##     select
+\end{verbatim}
+
+Q1
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{First\_box }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{5}\NormalTok{)}
+\NormalTok{Second\_box }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{8}\NormalTok{)}
+
+\CommentTok{\#a}
+\NormalTok{Possible\_Valuesof\_X }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}
+\NormalTok{  First\_box[}\DecValTok{1}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ Second\_box[}\DecValTok{1}\NormalTok{], First\_box[}\DecValTok{1}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ Second\_box[}\DecValTok{2}\NormalTok{], First\_box[}\DecValTok{1}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ Second\_box[}\DecValTok{3}\NormalTok{],}
+\NormalTok{  First\_box[}\DecValTok{2}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ Second\_box[}\DecValTok{1}\NormalTok{], First\_box[}\DecValTok{2}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ Second\_box[}\DecValTok{2}\NormalTok{], First\_box[}\DecValTok{2}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ Second\_box[}\DecValTok{3}\NormalTok{],}
+\NormalTok{  First\_box[}\DecValTok{3}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ Second\_box[}\DecValTok{1}\NormalTok{], First\_box[}\DecValTok{3}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ Second\_box[}\DecValTok{2}\NormalTok{], First\_box[}\DecValTok{3}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ Second\_box[}\DecValTok{3}\NormalTok{]}
+\NormalTok{)}
+
+\NormalTok{Possible\_Valuesof\_X}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  3  7  9  5  9 11  7 11 13
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#b}
+\NormalTok{Frequencies }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(Possible\_Valuesof\_X)}
+
+\NormalTok{Frequencies}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Possible_Valuesof_X
+##  3  5  7  9 11 13 
+##  1  1  2  2  2  1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Calculating PMFs for each value}
+\NormalTok{Pmf\_X\_3 }\OtherTok{\textless{}{-}}\NormalTok{ Frequencies[}\StringTok{"3"}\NormalTok{] }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(Frequencies)}
+\NormalTok{Pmf\_X\_5 }\OtherTok{\textless{}{-}}\NormalTok{ Frequencies[}\StringTok{"5"}\NormalTok{] }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(Frequencies)}
+\NormalTok{Pmf\_X\_7 }\OtherTok{\textless{}{-}}\NormalTok{ Frequencies[}\StringTok{"7"}\NormalTok{] }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(Frequencies)}
+\NormalTok{Pmf\_X\_9 }\OtherTok{\textless{}{-}}\NormalTok{ Frequencies[}\StringTok{"9"}\NormalTok{] }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(Frequencies)}
+\NormalTok{Pmf\_X\_11 }\OtherTok{\textless{}{-}}\NormalTok{ Frequencies[}\StringTok{"11"}\NormalTok{] }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(Frequencies)}
+\NormalTok{Pmf\_X\_13 }\OtherTok{\textless{}{-}}\NormalTok{ Frequencies[}\StringTok{"13"}\NormalTok{] }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(Frequencies)}
+
+\NormalTok{Pmf\_X\_3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         3 
+## 0.1111111
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Pmf\_X\_5 }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         5 
+## 0.1111111
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Pmf\_X\_7}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         7 
+## 0.2222222
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Pmf\_X\_9}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         9 
+## 0.2222222
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Pmf\_X\_11}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        11 
+## 0.2222222
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Pmf\_X\_13}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        13 
+## 0.1111111
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#c}
+\NormalTok{Expected\_Value\_of\_X }\OtherTok{\textless{}{-}}\NormalTok{ (}
+\NormalTok{  (}\FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{names}\NormalTok{(Frequencies)[}\DecValTok{1}\NormalTok{]) }\SpecialCharTok{*}\NormalTok{ Pmf\_X\_3) }\SpecialCharTok{+} 
+\NormalTok{  (}\FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{names}\NormalTok{(Frequencies)[}\DecValTok{2}\NormalTok{]) }\SpecialCharTok{*}\NormalTok{ Pmf\_X\_5) }\SpecialCharTok{+} 
+\NormalTok{  (}\FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{names}\NormalTok{(Frequencies)[}\DecValTok{3}\NormalTok{]) }\SpecialCharTok{*}\NormalTok{ Pmf\_X\_7) }\SpecialCharTok{+}
+\NormalTok{  (}\FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{names}\NormalTok{(Frequencies)[}\DecValTok{4}\NormalTok{]) }\SpecialCharTok{*}\NormalTok{ Pmf\_X\_9) }\SpecialCharTok{+} 
+\NormalTok{  (}\FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{names}\NormalTok{(Frequencies)[}\DecValTok{5}\NormalTok{]) }\SpecialCharTok{*}\NormalTok{ Pmf\_X\_11) }\SpecialCharTok{+} 
+\NormalTok{  (}\FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{names}\NormalTok{(Frequencies)[}\DecValTok{6}\NormalTok{]) }\SpecialCharTok{*}\NormalTok{ Pmf\_X\_13)}
+\NormalTok{)}
+
+\NormalTok{Expected\_Value\_of\_X}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        3 
+## 8.333333
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Var(X) = E(X\^{}2) {-} [E(X)]\^{}2}
+
+\NormalTok{Expected\_Value\_of\_X2 }\OtherTok{\textless{}{-}}\NormalTok{ (}
+\NormalTok{  (}\FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{names}\NormalTok{(Frequencies)[}\DecValTok{1}\NormalTok{])}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{*}\NormalTok{ Pmf\_X\_3) }\SpecialCharTok{+} 
+\NormalTok{  (}\FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{names}\NormalTok{(Frequencies)[}\DecValTok{2}\NormalTok{])}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{*}\NormalTok{ Pmf\_X\_5) }\SpecialCharTok{+} 
+\NormalTok{  (}\FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{names}\NormalTok{(Frequencies)[}\DecValTok{3}\NormalTok{])}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{*}\NormalTok{ Pmf\_X\_7) }\SpecialCharTok{+}
+\NormalTok{  (}\FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{names}\NormalTok{(Frequencies)[}\DecValTok{4}\NormalTok{])}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{*}\NormalTok{ Pmf\_X\_9) }\SpecialCharTok{+} 
+\NormalTok{  (}\FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{names}\NormalTok{(Frequencies)[}\DecValTok{5}\NormalTok{])}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{*}\NormalTok{ Pmf\_X\_11) }\SpecialCharTok{+} 
+\NormalTok{  (}\FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{names}\NormalTok{(Frequencies)[}\DecValTok{6}\NormalTok{])}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{*}\NormalTok{ Pmf\_X\_13)}
+\NormalTok{)}
+
+\NormalTok{Expected\_Value\_of\_X2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        3 
+## 78.33333
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Variance\_of\_X }\OtherTok{\textless{}{-}}\NormalTok{ (Expected\_Value\_of\_X2 }\SpecialCharTok{{-}}\NormalTok{ ((Expected\_Value\_of\_X)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{))}
+
+\NormalTok{Variance\_of\_X}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        3 
+## 8.888889
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#d}
+\CommentTok{\#Y=3X{-}4}
+
+\NormalTok{Poss\_Values\_Y }\OtherTok{=}\NormalTok{ (}\DecValTok{3}\SpecialCharTok{*}\NormalTok{Possible\_Valuesof\_X)}\SpecialCharTok{{-}}\DecValTok{4}
+\NormalTok{Poss\_Values\_Y}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  5 17 23 11 23 29 17 29 35
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Frequencies\_2 }\OtherTok{=} \FunctionTok{table}\NormalTok{(Poss\_Values\_Y)}
+\NormalTok{Frequencies\_2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Poss_Values_Y
+##  5 11 17 23 29 35 
+##  1  1  2  2  2  1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Pmf\_X\_5 }\OtherTok{\textless{}{-}}\NormalTok{ Frequencies\_2[}\StringTok{"5"}\NormalTok{] }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(Frequencies\_2)}
+\NormalTok{Pmf\_X\_11 }\OtherTok{\textless{}{-}}\NormalTok{ Frequencies\_2[}\StringTok{"11"}\NormalTok{] }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(Frequencies\_2)}
+\NormalTok{Pmf\_X\_17 }\OtherTok{\textless{}{-}}\NormalTok{ Frequencies\_2[}\StringTok{"17"}\NormalTok{] }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(Frequencies\_2)}
+\NormalTok{Pmf\_X\_23 }\OtherTok{\textless{}{-}}\NormalTok{ Frequencies\_2[}\StringTok{"23"}\NormalTok{] }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(Frequencies\_2)}
+\NormalTok{Pmf\_X\_29 }\OtherTok{\textless{}{-}}\NormalTok{ Frequencies\_2[}\StringTok{"29"}\NormalTok{] }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(Frequencies\_2)}
+\NormalTok{Pmf\_X\_35 }\OtherTok{\textless{}{-}}\NormalTok{ Frequencies\_2[}\StringTok{"35"}\NormalTok{] }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(Frequencies\_2)}
+
+\NormalTok{Pmf\_X\_5}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         5 
+## 0.1111111
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Pmf\_X\_11}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        11 
+## 0.1111111
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Pmf\_X\_17}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        17 
+## 0.2222222
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Pmf\_X\_23}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        23 
+## 0.2222222
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Pmf\_X\_29}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        29 
+## 0.2222222
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Pmf\_X\_35}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        35 
+## 0.1111111
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#e}
+\NormalTok{cdf\_of\_Y1 }\OtherTok{=}\NormalTok{ Pmf\_X\_5}
+\NormalTok{cdf\_of\_Y2 }\OtherTok{=}\NormalTok{ cdf\_of\_Y1}\SpecialCharTok{+}\NormalTok{Pmf\_X\_11}
+\NormalTok{cdf\_of\_Y3 }\OtherTok{=}\NormalTok{ cdf\_of\_Y2}\SpecialCharTok{+}\NormalTok{Pmf\_X\_17}
+\NormalTok{cdf\_of\_Y4 }\OtherTok{=}\NormalTok{ cdf\_of\_Y3 }\SpecialCharTok{+}\NormalTok{ Pmf\_X\_23}
+\NormalTok{cdf\_of\_Y5 }\OtherTok{=}\NormalTok{ cdf\_of\_Y4}\SpecialCharTok{+}\NormalTok{Pmf\_X\_29}
+\NormalTok{cdf\_of\_Y }\OtherTok{=}\NormalTok{ cdf\_of\_Y5}\SpecialCharTok{+}\NormalTok{Pmf\_X\_35}
+\NormalTok{cdf\_of\_Y}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 5 
+## 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#f}
+\CommentTok{\#P(Y=23)}
+\NormalTok{PY23 }\OtherTok{\textless{}{-}}\NormalTok{ cdf\_of\_Y4}
+\NormalTok{PY23}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         5 
+## 0.6666667
+\end{verbatim}
+
+Q2
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{number\_of\_values }\OtherTok{\textless{}{-}} \DecValTok{500}
+\NormalTok{mean }\OtherTok{\textless{}{-}} \DecValTok{25}
+\NormalTok{standard\_deviation }\OtherTok{\textless{}{-}} \DecValTok{8}
+\NormalTok{random\_generation }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(number\_of\_values, mean, standard\_deviation)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#a}
+\FunctionTok{hist}\NormalTok{(random\_generation, }\AttributeTok{breaks=}\DecValTok{10}\NormalTok{, }\AttributeTok{main=}\StringTok{"Histogram of Normal Distribution"}\NormalTok{, }\AttributeTok{freq=}\NormalTok{F)}
+
+\CommentTok{\#b}
+\FunctionTok{lines}\NormalTok{(}\FunctionTok{density}\NormalTok{(random\_generation), }\AttributeTok{lwd=}\DecValTok{3}\NormalTok{, }\AttributeTok{col=}\StringTok{"red"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{coursework_files/figure-latex/unnamed-chunk-10-1.pdf}
+\#c We can see that the histogram and the density curve follows a normal
+distribution as the density curve is of a bell shape and the peak of the
+density curve is at the mean 25.
+
+Q3
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#a}
+\NormalTok{X}\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{3.00}\NormalTok{, }\FloatTok{3.40}\NormalTok{, }\FloatTok{4.00}\NormalTok{, }\FloatTok{4.60}\NormalTok{,}\FloatTok{5.00}\NormalTok{, }\FloatTok{5.48}\NormalTok{, }\FloatTok{6.00}\NormalTok{, }\FloatTok{6.53}\NormalTok{, }\FloatTok{7.00}\NormalTok{)}
+\NormalTok{Y }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{8.0000}\NormalTok{, }\FloatTok{6.5600}\NormalTok{, }\FloatTok{5.0000}\NormalTok{, }\FloatTok{4.1600}\NormalTok{, }\FloatTok{4.0000}\NormalTok{, }\FloatTok{4.2304}\NormalTok{, }\FloatTok{5.0000}\NormalTok{, }\FloatTok{6.3409}\NormalTok{, }\FloatTok{8.0000}\NormalTok{)}
+
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+\NormalTok{ X,Y}
+\NormalTok{)}
+
+
+\FunctionTok{plot}\NormalTok{(df, }\AttributeTok{main=}\StringTok{"Data Frame plot"}\NormalTok{, }\AttributeTok{xlab=}\StringTok{"X"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"Y"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{coursework_files/figure-latex/unnamed-chunk-11-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#b}
+\NormalTok{correlation\_all\_data }\OtherTok{\textless{}{-}} \FunctionTok{cor}\NormalTok{(X,Y)}
+\NormalTok{correlation\_all\_data}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.02763248
+\end{verbatim}
+
+\#c It is a very weak negative correlation, as the value is close to
+zero. This suggests that there is almost no linear relationship between
+X and Y.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#d}
+\NormalTok{last\_six\_X }\OtherTok{\textless{}{-}}\NormalTok{ X[}\DecValTok{4}\SpecialCharTok{:}\DecValTok{9}\NormalTok{]}
+\NormalTok{last\_six\_Y }\OtherTok{\textless{}{-}}\NormalTok{ Y[}\DecValTok{4}\SpecialCharTok{:}\DecValTok{9}\NormalTok{]}
+
+\NormalTok{correlation\_last\_six }\OtherTok{\textless{}{-}} \FunctionTok{cor}\NormalTok{(last\_six\_X, last\_six\_Y)}
+\NormalTok{correlation\_last\_six}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9206644
+\end{verbatim}
+
+This is a very strong positive correlation. This is because the the
+relationship between the last six pairs are more linear than the first
+few data. The first few data points shows a lot more variations.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#e}
+\NormalTok{X1 }\OtherTok{\textless{}{-}}\NormalTok{ (}\DecValTok{3}\SpecialCharTok{{-}}\NormalTok{(}\DecValTok{2}\SpecialCharTok{*}\NormalTok{X))}
+\NormalTok{X2 }\OtherTok{\textless{}{-}}\NormalTok{ (}\DecValTok{2}\SpecialCharTok{*}\NormalTok{(X}\SpecialCharTok{\^{}}\DecValTok{3}\NormalTok{))}
+
+\NormalTok{correlation\_X1\_Y }\OtherTok{\textless{}{-}} \FunctionTok{cor}\NormalTok{(X1, Y)}
+\NormalTok{correlation\_X2\_Y }\OtherTok{\textless{}{-}} \FunctionTok{cor}\NormalTok{(X2, Y)}
+
+\NormalTok{correlation\_X1\_Y}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.02763248
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{correlation\_X2\_Y}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.1896496
+\end{verbatim}
+
+\#e X1=3-2X is a linear transformation. rxy = -0.02763248 and rx1y =
+0.02763248. Linear transformations do not change the nature of the
+correlation, but since X is multiplied by negative 2, the sign of the
+correlation coefficient is changed.
+
+X2 = 2X\^{}3 is a non linear transformation. rxy = -0.02763248 and rx2y
+= 0.1896496. The non linear transformation has changed the relationship
+between the variables. The new correlation shows a weak positive linear
+relationship between X2 and Y as opposed to the negative almost zero
+correlation between X and Y.
+
+Q4
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cars }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{view}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#a}
+\NormalTok{cars }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{head}\NormalTok{(}\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    speed dist
+## 1      4    2
+## 2      4   10
+## 3      7    4
+## 4      7   22
+## 5      8   16
+## 6      9   10
+## 7     10   18
+## 8     10   26
+## 9     10   34
+## 10    11   17
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#b}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{summary}\NormalTok{(cars))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      speed           dist       
+##  Min.   : 4.0   Min.   :  2.00  
+##  1st Qu.:12.0   1st Qu.: 26.00  
+##  Median :15.0   Median : 36.00  
+##  Mean   :15.4   Mean   : 42.98  
+##  3rd Qu.:19.0   3rd Qu.: 56.00  
+##  Max.   :25.0   Max.   :120.00
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#c}
+\FunctionTok{plot}\NormalTok{(cars, }\AttributeTok{xlab =} \StringTok{"Speed (X)"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Stopping Distances of Cars (Y)"}\NormalTok{,}
+     \AttributeTok{main=}\StringTok{"Relationship between Speed and Stopping Distance of Cars"}\NormalTok{,}
+     \AttributeTok{col=}\StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{coursework_files/figure-latex/unnamed-chunk-18-1.pdf}
+\#c It is a positive assosiation where as the speed increases, the
+stopping distance of the cars also increase.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#d}
+\NormalTok{LRmodel }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(}\AttributeTok{formula =}\NormalTok{ dist }\SpecialCharTok{\textasciitilde{}}\NormalTok{ speed, }\AttributeTok{data =}\NormalTok{ cars) }\CommentTok{\#linear model}
+\NormalTok{LRmodel}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = dist ~ speed, data = cars)
+## 
+## Coefficients:
+## (Intercept)        speed  
+##     -17.579        3.932
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(LRmodel)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = dist ~ speed, data = cars)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -29.069  -9.525  -2.272   9.215  43.201 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) -17.5791     6.7584  -2.601   0.0123 *  
+## speed         3.9324     0.4155   9.464 1.49e-12 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 15.38 on 48 degrees of freedom
+## Multiple R-squared:  0.6511, Adjusted R-squared:  0.6438 
+## F-statistic: 89.57 on 1 and 48 DF,  p-value: 1.49e-12
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(cars, }\AttributeTok{xlab =} \StringTok{"Speed (X)"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Stopping Distances of Cars (Y)"}\NormalTok{,}\AttributeTok{las =} \DecValTok{1}\NormalTok{,}
+     \AttributeTok{main=}\StringTok{"Relationship between Speed and Stopping Distances of Cars"}\NormalTok{,}
+     \AttributeTok{col=}\StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{)}
+\FunctionTok{abline}\NormalTok{ (LRmodel,}\AttributeTok{col =}\StringTok{"blue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{coursework_files/figure-latex/unnamed-chunk-19-1.pdf}
+
+\#e \[
+\begin{aligned}
+\text{Stopping Distance}=-17.5791+ 3.9324 * \text{Speed}\\
+\end{aligned}
+\] \#f 3.9324
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#g}
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{fitted}\NormalTok{(LRmodel),}\FunctionTok{resid}\NormalTok{(LRmodel),}
+     \AttributeTok{xlab =} \StringTok{"Fitted"}\NormalTok{, }\AttributeTok{ylab =}\StringTok{"Residuals"}\NormalTok{,}\AttributeTok{las =} \DecValTok{1}\NormalTok{, }
+     \AttributeTok{main=}\StringTok{"Residuals versus Speed"}\NormalTok{,}
+     \AttributeTok{col=}\StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{) }
+\FunctionTok{abline}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{coursework_files/figure-latex/unnamed-chunk-20-1.pdf}
+\#g In this residual(errors) plot, the points do not seem to be randomly
+scattered around the residual=0 line. So we can conclude that a linear
+model is not appropriate for modeling this data. There are a few points
+with larger residuals, both positive and negative indicating possible
+outliers.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#h}
+\NormalTok{new\_speed }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{speed =} \DecValTok{21}\NormalTok{)}
+\NormalTok{predicted\_dist }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(LRmodel, }\AttributeTok{newdata =}\NormalTok{ new\_speed)}
+\NormalTok{predicted\_dist}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        1 
+## 65.00149
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{equation\_predicted\_dist }\OtherTok{\textless{}{-}} \SpecialCharTok{{-}}\FloatTok{17.5791}\SpecialCharTok{+} \FloatTok{3.9324} \SpecialCharTok{*}\DecValTok{21}
+\NormalTok{equation\_predicted\_dist}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 65.0013
+\end{verbatim}
+
+\#Q5
+
+\#Part A
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mean\_5 }\OtherTok{\textless{}{-}} \FloatTok{4.11}
+\NormalTok{standard\_deviation\_5 }\OtherTok{=} \FloatTok{1.37}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#a}
+\NormalTok{answer\_0}\FloatTok{.85} \OtherTok{\textless{}{-}} \FunctionTok{qnorm}\NormalTok{(}\FloatTok{0.85}\NormalTok{, mean\_5, standard\_deviation\_5)}
+\NormalTok{answer\_0}\FloatTok{.85}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5.529914
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#b}
+\NormalTok{answer\_0}\FloatTok{.35} \OtherTok{=} \FunctionTok{qnorm}\NormalTok{(}\FloatTok{0.35}\NormalTok{, mean\_5, standard\_deviation\_5)}
+\NormalTok{answer\_0}\FloatTok{.35}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.582111
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#c}
+\NormalTok{median }\OtherTok{\textless{}{-}}\NormalTok{ mean\_5}
+\NormalTok{median}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4.11
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#d}
+\NormalTok{morethan\_5dollar }\OtherTok{\textless{}{-}} \FunctionTok{pnorm}\NormalTok{(}\DecValTok{5}\NormalTok{, mean\_5, standard\_deviation\_5, }\AttributeTok{lower.tail =}\NormalTok{ F)}
+\NormalTok{morethan\_5dollar}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.257964
+\end{verbatim}
+
+\#Part B
+
+\#a \#The most suitable distribution for X is binomial. This is because
+there is a fixed number of trials, 10 where a person can be either
+infected or not infected.The probability a person being infected in each
+trial is 0.1. \#n = 10 \#p = 0.1 \#X\textasciitilde Binomial(n,p)
+\#X\textasciitilde Binomial(10,0.1)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n\_times }\OtherTok{\textless{}{-}} \DecValTok{10}
+\NormalTok{probability }\OtherTok{\textless{}{-}} \FloatTok{0.1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#b}
+\NormalTok{less\_than\_3 }\OtherTok{=} \FunctionTok{pbinom}\NormalTok{(}\DecValTok{3}\NormalTok{,n\_times,probability)}
+\NormalTok{less\_than\_3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9872048
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#c}
+\CommentTok{\#E(X)=np}
+\CommentTok{\#Var(X)=np(1{-}p)}
+
+\NormalTok{Mean\_of\_X }\OtherTok{=}\NormalTok{ n\_times}\SpecialCharTok{*}\NormalTok{probability}
+\NormalTok{Variance\_of\_X2 }\OtherTok{=}\NormalTok{ n\_times}\SpecialCharTok{*}\NormalTok{probability}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{probability)}
+
+\NormalTok{Mean\_of\_X}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Variance\_of\_X2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9
+\end{verbatim}
+
+\#d \#n = 100 \#p = 0.024 \#Since the number of trials n is very large
+and the probability of being infected in a single trial is very small,
+Poisson distribution can be used to approximate the binomial
+distribution. Set the Poisson mean to equal the binomial mean where \#λ
+= np = 100*0.024 = 2.4. \#So X \textasciitilde{} Pois(2.4)
+
+\#Q6
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{N }\OtherTok{\textless{}{-}} \DecValTok{50000} \CommentTok{\#number of bootstrap samples}
+\NormalTok{my\_boootstrap }\OtherTok{\textless{}{-}} \FunctionTok{numeric}\NormalTok{(N) }\CommentTok{\#vector where to store sample mean}
+\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{11}\NormalTok{, }\DecValTok{15}\NormalTok{) }\CommentTok{\#given data set}
+
+\FunctionTok{mean}\NormalTok{(data) }\CommentTok{\#checking the mean of the given data}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6.25
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{N) \{}
+\NormalTok{  s}\OtherTok{=}\FunctionTok{sample}\NormalTok{(data,}\DecValTok{12}\NormalTok{,}\AttributeTok{replace =}\NormalTok{ T)}
+\NormalTok{  my\_boootstrap[i]}\OtherTok{=}\FunctionTok{mean}\NormalTok{(s)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#a}
+\FunctionTok{hist}\NormalTok{(my\_boootstrap)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{coursework_files/figure-latex/unnamed-chunk-31-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#b}
+\FunctionTok{quantile}\NormalTok{ (my\_boootstrap, }\FunctionTok{c}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\FloatTok{0.975}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     2.5%    97.5% 
+## 4.166667 8.583333
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#c}
+\FunctionTok{qqnorm}\NormalTok{(my\_boootstrap)}
+\FunctionTok{qqline}\NormalTok{(my\_boootstrap)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{coursework_files/figure-latex/unnamed-chunk-33-1.pdf}
+
+\end{document}
